@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pure Intentions By AK — Concept Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,400;1,700&family=Barlow:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080807;
+    --surface: #141311;
+    --surface2: #1c1a18;
+    --text: #F4EFE7;
+    --muted: #9C968C;
+    --accent: #C8A26A;
+    --accent2: #D4784A;
+    --ink: #2A1F14;
+    --border: rgba(244,239,231,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+
+  /* GRAIN OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    background: linear-gradient(to bottom, rgba(8,8,7,0.95), transparent);
+    backdrop-filter: blur(2px);
+  }
+
+  .nav-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  .nav-cta {
+    background: var(--accent);
+    color: var(--bg) !important;
+    padding: 8px 18px !important;
+    font-weight: 700 !important;
+    color: #080807 !important;
+  }
+
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+  }
+
+  .nav-hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--text);
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 40px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 70% 40%, rgba(200,162,106,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 80%, rgba(212,120,74,0.05) 0%, transparent 50%),
+      var(--bg);
+  }
+
+  /* Halftone dots decoration */
+  .hero-dots {
+    position: absolute;
+    top: 80px;
+    right: 60px;
+    width: 220px;
+    height: 220px;
+    opacity: 0.12;
+    background-image: radial-gradient(circle, var(--text) 1.5px, transparent 1.5px);
+    background-size: 14px 14px;
+  }
+
+  .hero-ink-mark {
+    position: absolute;
+    bottom: 0;
+    left: -20px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(ellipse at center, rgba(200,162,106,0.04) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(40px);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .hero-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(64px, 10vw, 130px);
+    line-height: 0.9;
+    letter-spacing: 0.01em;
+    color: var(--text);
+    margin-bottom: 28px;
+  }
+
+  .hero-headline .accent-line {
+    color: var(--accent);
+    display: block;
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 520px;
+    margin-bottom: 44px;
+    font-weight: 400;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--bg);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: #d9b278;
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    border: 1px solid rgba(244,239,231,0.25);
+    color: var(--text);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    background: transparent;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--text);
+    color: var(--text);
+  }
+
+  /* Visual placeholder product block in hero */
+  .hero-visual {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 320px;
+    height: 420px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-visual::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 20px,
+        rgba(244,239,231,0.015) 20px,
+        rgba(244,239,231,0.015) 21px
+      );
+  }
+
+  .hero-visual-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    opacity: 0.5;
+  }
+
+  .hero-accent-bar {
+    position: absolute;
+    top: 50%;
+    right: 320px;
+    width: 3px;
+    height: 240px;
+    background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+    transform: translateY(-50%);
+  }
+
+  /* Scroll indicator */
+  .scroll-hint {
+    position: absolute;
+    bottom: 32px;
+    right: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .scroll-hint span {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    writing-mode: vertical-rl;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  /* SECTION LAYOUT */
+  section {
+    padding: 100px 40px;
+  }
+
+  .section-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 6vw, 72px);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+
+  .section-body {
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.65;
+    max-width: 520px;
+  }
+
+  /* TWO PATHS */
+  .two-paths {
+    background: var(--surface);
+  }
+
+  .paths-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 60px;
+  }
+
+  .path-card {
+    position: relative;
+    padding: 60px 44px;
+    background: var(--bg);
+    overflow: hidden;
+    min-height: 380px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+
+  .path-card:hover { background: var(--surface2); }
+
+  .path-card-num {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem;
+    color: rgba(244,239,231,0.04);
+    line-height: 1;
+  }
+
+  .path-icon-area {
+    margin-bottom: 32px;
+  }
+
+  .path-icon {
+    width: 56px;
+    height: 56px;
+    border: 1px solid rgba(200,162,106,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .path-icon svg {
+    width: 24px;
+    height: 24px;
+    stroke: var(--accent);
+    fill: none;
+    stroke-width: 1.5;
+  }
+
+  .path-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  .path-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8rem;
+    line-height: 0.95;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+
+  .path-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+
+  .path-link {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .path-link::after {
+    content: '→';
+    transition: transform 0.2s;
+  }
+
+  .path-card:hover .path-link::after { transform: translateX(4px); }
+
+  .path-divider {
+    width: 1px;
+    background: rgba(244,239,231,0.06);
+    position: absolute;
+    top: 20%;
+    bottom: 20%;
+    left: 50%;
+  }
+
+  /* WHAT WE MAKE */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    margin-top: 60px;
+  }
+
+  .service-item {
+    background: var(--surface);
+    padding: 40px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.2s;
+  }
+
+  .service-item:hover { background: var(--surface2); }
+
+  .service-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: transparent;
+    transition: background 0.3s;
+  }
+
+  .service-item:hover::before {
+    background: linear-gradient(to right, var(--accent), transparent);
+  }
+
+  .service-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    opacity: 0.6;
+    margin-bottom: 28px;
+  }
+
+  .service-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 0.04em;
+    color: var(--text);
+    margin-bottom: 10px;
+    line-height: 1;
+  }
+
+  .service-sub {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .service-visual {
+    margin-top: 28px;
+    height: 100px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .service-visual-dot {
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(200,162,106,0.2);
+    border-radius: 50%;
+  }
+
+  /* SHOP SECTION */
+  .shop-section { background: var(--bg); }
+
+  .shop-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .product-card {
+    background: var(--surface);
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .product-card-bg {
+    position: absolute;
+    inset: 0;
+    background: var(--surface);
+  }
+
+  .product-card-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 28px,
+        rgba(244,239,231,0.012) 28px,
+        rgba(244,239,231,0.012) 29px
+      );
+  }
+
+  .product-placeholder-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    opacity: 0.3;
+    white-space: nowrap;
+  }
+
+  .product-info {
+    position: relative;
+    z-index: 2;
+    padding: 20px 20px 24px;
+    background: linear-gradient(to top, rgba(8,8,7,0.95) 0%, transparent 100%);
+  }
+
+  .product-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  .product-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .product-price {
+    font-size: 0.88rem;
+    color: var(--muted);
+  }
+
+  /* PROCESS */
+  .process-section { background: var(--surface); }
+
+  .process-flow {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 60px;
+    position: relative;
+  }
+
+  .process-flow::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: calc(12.5% + 16px);
+    right: calc(12.5% + 16px);
+    height: 1px;
+    background: linear-gradient(to right, var(--accent), rgba(200,162,106,0.2));
+  }
+
+  .process-step {
+    padding: 0 28px 0 0;
+    position: relative;
+  }
+
+  .process-step:last-child { padding-right: 0; }
+
+  .step-num-wrap {
+    display: flex;
+    align-items: center;
+    margin-bottom: 28px;
+  }
+
+  .step-num {
+    width: 56px;
+    height: 56px;
+    border: 1px solid var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    color: var(--accent);
+    flex-shrink: 0;
+    background: var(--surface);
+    position: relative;
+    z-index: 2;
+  }
+
+  .step-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+
+  .step-desc {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* WHY SECTION */
+  .why-section {
+    background: var(--bg);
+  }
+
+  .why-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    margin-top: 60px;
+  }
+
+  .why-points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .why-point {
+    border-top: 1px solid var(--border);
+    padding: 28px 0;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .why-point:last-child { border-bottom: 1px solid var(--border); }
+
+  .why-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    opacity: 0.7;
+    padding-top: 3px;
+    flex-shrink: 0;
+    width: 28px;
+  }
+
+  .why-text h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .why-text p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .why-visual {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 52px 44px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .why-visual-dots {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    width: 180px;
+    height: 180px;
+    opacity: 0.08;
+    background-image: radial-gradient(circle, var(--text) 1.5px, transparent 1.5px);
+    background-size: 12px 12px;
+  }
+
+  .why-quote {
+    position: relative;
+    z-index: 2;
+  }
+
+  .why-quote-mark {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem;
+    line-height: 0.8;
+    color: var(--accent);
+    opacity: 0.4;
+    margin-bottom: 16px;
+  }
+
+  .why-quote-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.9rem;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--text);
+    letter-spacing: 0.02em;
+  }
+
+  .why-quote-attr {
+    margin-top: 24px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* FINAL CTA */
+  .cta-section {
+    background: var(--surface);
+    text-align: center;
+    padding: 120px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(200,162,106,0.06) 0%, transparent 60%);
+  }
+
+  .cta-section .section-eyebrow {
+    justify-content: center;
+  }
+
+  .cta-section .section-eyebrow::before { display: none; }
+
+  .cta-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 8vw, 100px);
+    line-height: 0.9;
+    color: var(--text);
+    margin-bottom: 28px;
+    position: relative;
+  }
+
+  .cta-sub {
+    font-size: 1rem;
+    color: var(--muted);
+    max-width: 460px;
+    margin: 0 auto 44px;
+    line-height: 1.6;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    padding: 48px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 0.95rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+
+  .footer-logo span { color: var(--accent); }
+
+  .footer-tagline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--text); }
+
+  .footer-copy {
+    font-size: 0.78rem;
+    color: var(--muted);
+    opacity: 0.5;
+  }
+
+  /* CONCEPT NOTE */
+  .concept-note {
+    background: rgba(200,162,106,0.06);
+    border: 1px solid rgba(200,162,106,0.2);
+    border-left: 3px solid var(--accent);
+    padding: 16px 20px;
+    margin: 0;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  /* ANIMATIONS */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 16px 20px; }
+
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+
+    .hero {
+      padding: 120px 20px 72px;
+      min-height: 100svh;
+    }
+
+    .hero-visual,
+    .hero-accent-bar { display: none; }
+
+    .hero-dots { width: 140px; height: 140px; right: 20px; top: 90px; }
+
+    section { padding: 72px 20px; }
+
+    .paths-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .services-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .product-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .product-grid .product-card:last-child {
+      display: none;
+    }
+
+    .process-flow {
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .process-flow::before { display: none; }
+
+    .why-layout {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+
+    footer {
+      flex-direction: column;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .footer-links { justify-content: center; }
+  }
+
+  @media (max-width: 600px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .process-flow {
+      grid-template-columns: 1fr;
+    }
+
+    .product-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .product-grid .product-card:last-child {
+      display: flex;
+    }
+
+    .hero-headline { font-size: clamp(52px, 14vw, 80px); }
+
+    .hero-ctas { flex-direction: column; align-items: flex-start; }
+
+    .why-visual { padding: 36px 28px; }
+  }
+</style>
+</head>
+<body>
+
+<p class="concept-note">
+  ✦ CONCEPT DIRECTION — Pure Intentions By AK Homepage Mockup ✦ Placeholder images used. This is a design concept only.
+</p>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Pure Intentions <span>By AK</span></a>
+  <ul class="nav-links">
+    <li><a href="#">Custom Printing</a></li>
+    <li><a href="#">Shop</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#" class="nav-cta">Start an Order</a></li>
+  </ul>
+  <button class="nav-hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-dots"></div>
+  <div class="hero-ink-mark"></div>
+
+  <div class="hero-visual">
+    <span class="hero-visual-label">Product Visual</span>
+  </div>
+  <div class="hero-accent-bar"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Streetwear &amp; Custom Printing</p>
+    <h1 class="hero-headline">
+      Wear Your Purpose.<br>
+      <span class="accent-line">Print Your Intention.</span>
+    </h1>
+    <p class="hero-sub">
+      Streetwear and custom printing built for brands, creators, teams, and anyone with a message worth wearing.
+    </p>
+    <div class="hero-ctas">
+      <a href="#" class="btn-primary">Start a Custom Order</a>
+      <a href="#" class="btn-secondary">Shop the Collection</a>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- TWO PATHS -->
+<section class="two-paths">
+  <div class="section-eyebrow">What We Do</div>
+  <h2 class="section-title">Two Ways<br>To Move With Purpose</h2>
+  <p class="section-body">Pure Intentions operates at the intersection of streetwear identity and custom creation — choose your path.</p>
+
+  <div class="paths-grid">
+    <a class="path-card" href="#">
+      <span class="path-card-num">01</span>
+      <div class="path-icon-area">
+        <div class="path-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+      </div>
+      <p class="path-tag">For Brands, Creators &amp; Teams</p>
+      <h3 class="path-title">Custom<br>Printing</h3>
+      <p class="path-desc">Tees, bags, hats, tumblers, stickers, DTF transfers — your idea, printed with care. We bring any design to life.</p>
+      <span class="path-link">Get a Custom Quote</span>
+    </a>
+
+    <a class="path-card" href="#">
+      <span class="path-card-num">02</span>
+      <div class="path-icon-area">
+        <div class="path-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+      </div>
+      <p class="path-tag">Designed In-House</p>
+      <h3 class="path-title">Pure Intentions<br>Clothing</h3>
+      <p class="path-desc">Original streetwear built around self-expression, purpose, and identity. Tees, hoodies, and limited drops you'll actually want to wear.</p>
+      <span class="path-link">Shop the Collection</span>
+    </a>
+  </div>
+</section>
+
+<!-- WHAT WE MAKE -->
+<section>
+  <div class="section-eyebrow">Custom Printing</div>
+  <h2 class="section-title">What We Make</h2>
+  <p class="section-body">From a single sticker to a full run for your team — if you can imagine it, we can print it.</p>
+
+  <div class="services-grid">
+    <div class="service-item fade-up">
+      <p class="service-num">01</p>
+      <h3 class="service-name">Custom Tees</h3>
+      <p class="service-sub">Full front, back, or sleeve prints. Any color, any vibe.</p>
+      <div class="service-visual"><div class="service-visual-dot"></div></div>
+    </div>
+    <div class="service-item fade-up">
+      <p class="service-num">02</p>
+      <h3 class="service-name">Bags</h3>
+      <p class="service-sub">Tote bags, custom prints. Carry your brand everywhere.</p>
+      <div class="service-visual"><div class="service-visual-dot"></div></div>
+    </div>
+    <div class="service-item fade-up">
+      <p class="service-num">03</p>
+      <h3 class="service-name">Hats &amp; Caps</h3>
+      <p class="service-sub">Embroidered or printed. Structured or relaxed fits.</p>
+      <div class="service-visual"><div class="service-visual-dot"></div></div>
+    </div>
+    <div class="service-item fade-up">
+      <p class="service-num">04</p>
+      <h3 class="service-name">Tumblers</h3>
+      <p class="service-sub">Custom drinkware for giveaways, merch, and events.</p>
+      <div class="service-visual"><div class="service-visual-dot"></div></div>
+    </div>
+    <div class="service-item fade-up">
+      <p class="service-num">05</p>
+      <h3 class="service-name">Stickers</h3>
+      <p class="service-sub">Die-cut, kiss-cut, and vinyl. Built to last and look sharp.</p>
+      <div class="service-visual"><div class="service-visual-dot"></div></div>
+    </div>
+    <div class="service-item fade-up">
+      <p class="service-num">06</p>
+      <h3 class="service-name">DTF Transfers</h3>
+      <p class="service-sub">Direct-to-film transfers for bulk orders and print-on-demand.</p>
+      <div class="service-visual"><div class="service-visual-dot"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SHOP -->
+<section class="shop-section">
+  <div class="shop-header">
+    <div>
+      <div class="section-eyebrow">Pure Intentions Clothing</div>
+      <h2 class="section-title">Shop the<br>Collection</h2>
+    </div>
+    <a href="#" class="btn-secondary">View All</a>
+  </div>
+
+  <div class="product-grid">
+    <div class="product-card">
+      <div class="product-card-bg"></div>
+      <div class="product-placeholder-text">Product Image</div>
+      <div class="product-info">
+        <p class="product-tag">Tee — Move With Purpose</p>
+        <p class="product-name">Purpose Graphic Tee</p>
+        <p class="product-price">$34</p>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-card-bg"></div>
+      <div class="product-placeholder-text">Product Image</div>
+      <div class="product-info">
+        <p class="product-tag">Hoodie — Limited Drop</p>
+        <p class="product-name">Pure Intentions Hoodie</p>
+        <p class="product-price">$65</p>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-card-bg"></div>
+      <div class="product-placeholder-text">Product Image</div>
+      <div class="product-info">
+        <p class="product-tag">Tee — Collection</p>
+        <p class="product-name">Intention Tee</p>
+        <p class="product-price">$38</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section">
+  <div class="section-eyebrow">How It Works</div>
+  <h2 class="section-title">From Idea<br>to Reality</h2>
+  <p class="section-body">Getting a custom order done should feel as intentional as wearing it.</p>
+
+  <div class="process-flow">
+    <div class="process-step fade-up">
+      <div class="step-num-wrap">
+        <div class="step-num">01</div>
+      </div>
+      <p class="step-title">Send Your Idea</p>
+      <p class="step-desc">Tell us what you need — product, quantity, design concept, and any details. We'll take it from there.</p>
+    </div>
+    <div class="process-step fade-up">
+      <div class="step-num-wrap">
+        <div class="step-num">02</div>
+      </div>
+      <p class="step-title">Confirm the Details</p>
+      <p class="step-desc">We'll work with you on design, sizing, and materials. You approve it before anything prints.</p>
+    </div>
+    <div class="process-step fade-up">
+      <div class="step-num-wrap">
+        <div class="step-num">03</div>
+      </div>
+      <p class="step-title">Print with Care</p>
+      <p class="step-desc">Every order is handled with the same quality standards — whether it's 1 piece or 100.</p>
+    </div>
+    <div class="process-step fade-up">
+      <div class="step-num-wrap">
+        <div class="step-num">04</div>
+      </div>
+      <p class="step-title">Wear With Purpose</p>
+      <p class="step-desc">Your design. Your message. Your intention — printed and ready.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why-section">
+  <div class="section-eyebrow">Why Pure Intentions</div>
+  <h2 class="section-title">Built Different</h2>
+
+  <div class="why-layout">
+    <ul class="why-points">
+      <li class="why-point fade-up">
+        <span class="why-num">01</span>
+        <div class="why-text">
+          <h4>Self-Expression Is the Foundation</h4>
+          <p>We don't print orders — we help people say something. Every design matters to us because it matters to you.</p>
+        </div>
+      </li>
+      <li class="why-point fade-up">
+        <span class="why-num">02</span>
+        <div class="why-text">
+          <h4>For Creators, Brands, and Teams</h4>
+          <p>Whether you're a solo creator, growing brand, sports team, or running an event — we scale with your vision.</p>
+        </div>
+      </li>
+      <li class="why-point fade-up">
+        <span class="why-num">03</span>
+        <div class="why-text">
+          <h4>Streetwear-Focused Sensibility</h4>
+          <p>We're not a generic print shop. Our design roots are in streetwear culture — bold, intentional, and real.</p>
+        </div>
+      </li>
+      <li class="why-point fade-up">
+        <span class="why-num">04</span>
+        <div class="why-text">
+          <h4>Personal, Not Generic</h4>
+          <p>You'll work with us directly. No automated portals, no template factories — just honest, quality printing.</p>
+        </div>
+      </li>
+    </ul>
+
+    <div class="why-visual fade-up">
+      <div class="why-visual-dots"></div>
+      <div class="why-quote">
+        <div class="why-quote-mark">&ldquo;</div>
+        <p class="why-quote-text">Your idea deserves more than a generic template. It deserves intention.</p>
+        <p class="why-quote-attr">— Pure Intentions By AK</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-section">
+  <p class="section-eyebrow">Ready?</p>
+  <h2 class="cta-headline">Move With<br><span style="color:var(--accent)">Purpose.</span></h2>
+  <p class="cta-sub">Start a custom order, shop the collection, or reach out — we'll make it happen.</p>
+  <div class="cta-buttons">
+    <a href="#" class="btn-primary">Start a Custom Order</a>
+    <a href="#" class="btn-secondary">Shop the Collection</a>
+    <a href="#" class="btn-secondary">Contact Us</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">Pure Intentions <span>By AK</span></div>
+    <div class="footer-tagline">Move With Purpose</div>
+  </div>
+  <ul class="footer-links">
+    <li><a href="#">Custom Printing</a></li>
+    <li><a href="#">Shop</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
+    <li><a href="#">Instagram</a></li>
+  </ul>
+  <p class="footer-copy">© 2025 Pure Intentions By AK</p>
+</footer>
+
+<script>
+  // Scroll animation
+  const fadeEls = document.querySelectorAll('.fade-up');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  fadeEls.forEach(el => io.observe(el));
+
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 80) {
+      nav.style.background = 'rgba(8,8,7,0.97)';
+      nav.style.backdropFilter = 'blur(12px)';
+    } else {
+      nav.style.background = 'linear-gradient(to bottom, rgba(8,8,7,0.95), transparent)';
+      nav.style.backdropFilter = 'blur(2px)';
+    }
+  });
+</script>
+</body>
+</html>
